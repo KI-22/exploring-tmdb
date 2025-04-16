@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 function App() {
-    const [movieData, setMovieData] = useState(null)
-    const [error, setError] = useState(null)
+    const [movieData, setMovieData] = useState(null);
+    const [error, setError] = useState(null);
+    const [input, setInput] = useState("");
 
     useEffect(() => {
         const options = {
@@ -13,7 +14,7 @@ function App() {
             }
         }
 
-        fetch('https://api.themoviedb.org/3/movie/22?language=en-US', options)
+        fetch(`https://api.themoviedb.org/3/search/movie?query=${input}&include_adult=false&language=en-US&page=1`, options)
             .then(res => res.json())
             .then(data => {
                 setMovieData(data)
@@ -22,7 +23,12 @@ function App() {
                 console.error("ERROR:", err)
                 setError("Failed to fetch movie data.")
             })
-    }, [])
+    }, [input])
+
+
+
+
+
 
     return (
         <>
@@ -30,13 +36,17 @@ function App() {
 
             {error && <p style={{ color: 'red' }}>{error}</p>}
 
+            <input id="input-1" value={input} onChange={(e) => setInput(e.target.value)}></input>
+
             {movieData ? (
+                movieData.results.map((movie) => (
                 <div>
-                    <h2>{movieData.title}</h2>
-                    <p>{movieData.overview}</p>
-                    <p><strong>Release Date:</strong> {movieData.release_date}</p>
-                    <p><strong>Rating:</strong> {movieData.vote_average} / 10</p>
+                    <h2>{movie.title}</h2>
+                    <p>{movie.overview}</p>
+                    <p><strong>Release Date:</strong> {movie.release_date}</p>
+                    <p><strong>Rating:</strong> {movie.vote_average} / 10</p>
                 </div>
+                ))
             ) : (
                 <p>Loading...</p>
             )}
