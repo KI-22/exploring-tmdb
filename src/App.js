@@ -13,7 +13,8 @@ function App() {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4MDY0YzFkM2YxNWUwNzlmMzQ3NmNmM2Y0YjZmZDNlNyIsIm5iZiI6MTc0NDcyODk2Ni4yMDYsInN1YiI6IjY3ZmU3Mzg2MzExMGJkODJkZmFkNzYyMCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.CRUfnfJ60zqVbxSGDnkZuXxMdqRpqTt5cGah7UzYyZA'
+          Authorization: 'Bearer '
+              
         }
       };
       
